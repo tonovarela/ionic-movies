@@ -7,6 +7,27 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  textoBuscar: string = "";
+  ideas = ["Spiderman", "Superman", "El santo", "Caliman", "Dragon Ball Z", "Avengers"]
+
+
+  constructor() { }
+
+
+  buscar(event) {
+    let valor;
+    //if (event){
+       valor = event.detail.value;
+    // }else{
+    //   valor=this.textoBuscar
+    // }
+    
+    console.log(valor);
+
+  }
+  setIdea(idea) {
+    this.textoBuscar = idea;
+   // this.buscar();
+  }
 
 }

@@ -10,18 +10,30 @@ import { ResponseMDB, Movie } from '../interfaces/interfaces';
 export class Tab1Page  implements OnInit{
   
   peliculasRecientes : Movie[] = [];
+  peliculasPopulares : Movie[] = [];
  
   constructor(private movieService: MoviesService) {}
-
-  
-
+  cargarMas() {
+    this.getPopulares();
+  }  
+  getPopulares(){
+    this.movieService
+    .getPopulars()
+    .subscribe( resp  => {
+      this.peliculasPopulares=[...this.peliculasPopulares, ...resp.results];
+      //this.peliculasPopulares = resp.results;                
+    });
+  }
   ngOnInit() {       
     this.movieService
         .getFeatures()
         .subscribe( resp  => {
           this.peliculasRecientes = resp.results;          
-          console.log(this.peliculasRecientes);
+          //console.log(this.peliculasRecientes);
         });
+    this.getPopulares();
+      
+     
   }
 
 }
