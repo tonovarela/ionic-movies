@@ -16,18 +16,16 @@ export class Tab2Page {
 
   buscar(event) {
     let valor;
-    //if (event){
+    
        valor = event.detail.value;
-    // }else{
-    //   valor=this.textoBuscar
-    // }
+    
     
     console.log(valor);
 
   }
   setIdea(idea) {
     this.textoBuscar = idea;
-   // this.buscar();
+   
   }
 
 }
