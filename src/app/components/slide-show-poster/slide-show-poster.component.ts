@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Movie } from 'src/app/interfaces/interfaces';
 import { ModalController } from '@ionic/angular';
 import { DetalleComponent } from '../detalle/detalle.component';
@@ -10,6 +10,7 @@ import { DetalleComponent } from '../detalle/detalle.component';
 })
 export class SlideShowPosterComponent implements OnInit  {
 
+@Output() refrescaLista = new EventEmitter();
  @Input() peliculas: Movie[];
  slideOpts = {
   slidesPerView : 3.3,
@@ -20,15 +21,18 @@ export class SlideShowPosterComponent implements OnInit  {
 
   ngOnInit() {}
 
-  async verDetalle(id: string) {
-    console.log(id);
+  async verDetalle(id: string) {    
     const modal= await this.modalCtrl.create({
     component: DetalleComponent,
     componentProps: {
       id
     }
   });
-  modal.present();
+
+  modal.onDidDismiss().then( (data) => {    
+    this.refrescaLista.emit();
+});
+  modal.present();  
 }
 
 }

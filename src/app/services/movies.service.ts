@@ -12,10 +12,15 @@ export class MoviesService {
 
   private page: number = 1;
   constructor(private http: HttpClient) { }
+
   private ejecutaQuery<T>(query) {
-    const url =`${this.url}${query}&language=es&include_image_language=es&api_key=${this.api}`;
-    //console.log(url);
+    const url = `${this.url}${query}&language=es&include_image_language=es&api_key=${this.api}`;    
     return this.http.get<T>(url);
+  }
+
+  searchMovie(movie: string) {
+    const url = `/search/movie?language=es&query=${movie}`;
+    return this.ejecutaQuery<ResponseMDB>(url);
   }
 
   getPopulars() {

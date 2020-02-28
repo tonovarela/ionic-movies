@@ -80,10 +80,11 @@
         </ion-button>
         </ion-buttons>
         <ion-buttons slot="end">
-            <ion-button (click)="favorito()">
-                <ion-icon slot="end" name="star-outline"></ion-icon>
+            <ion-button (click)="favorito()" >
+                <ion-icon slot="end" name="star-outline" *ngIf="!dataLocaService.esFavorito(pelicula.id)"></ion-icon>
+                <ion-icon slot="end" name="star" *ngIf="dataLocaService.esFavorito(pelicula.id)"></ion-icon>
                 <ion-label>Favorito</ion-label>
-            </ion-button>
+            </ion-button>            
             </ion-buttons>
     </ion-toolbar>
 </ion-footer>
